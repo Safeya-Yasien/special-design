@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  --black-color: #000;
+  --main-color: #ffaa00;
+  --white-color: #fff;
+  /* --text-color: #727982; */
+  --text-color: #e6e6e6;
+
+  --main-transition: 0.3s;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.settings-box {
+  position: fixed;
+  width: 200px;
+  background-color: var(--white-color);
+  z-index: 2000;
+  min-height: 100vh;
+  left: -200px;
+  top: 0;
+  transition: var(--main-transition);
+}
+
+.open-settings {
+  left: 0px;
+}
+
+.settings-box .gear-icon-container {
+  position: absolute;
+  top: 100px;
+  right: -26px;
+  background-color: var(--white-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.settings-box .gear-icon {
+  padding: 5px;
+}
+
+.settings-box .settings-container {
+}
+
+.settings-box .settings-container .option-box {
+  background-color: var(--text-color);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.settings-box .settings-container h2 {
+  margin: 0;
+}
+
+.settings-box .settings-container .colors-list {
+}
+
+.settings-box .settings-container .colors-list li {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--black-color);
+  cursor: pointer;
+}
+
+.settings-box .settings-container .colors-list li.active {
+  opacity: 0.5;
+}
+
+.settings-box .settings-container .colors-list li:nth-child(1) {
+  background-color: #ffaa00;
+}
+
+.settings-box .settings-container .colors-list li:nth-child(2) {
+  background-color: #2052a9;
+}
+
+.settings-box .settings-container .colors-list li:nth-child(3) {
+  background-color: #e91e63;
+}
+
+.settings-box .settings-container .colors-list li:nth-child(4) {
+  background-color: #03a9f4;
+}
+
+.settings-box .settings-container .colors-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 15px;
+}
+
+.settings-box .settings-container {
+}
+
+.settings-box {
+}
+
+.settings-box {
+}
+
+.settings-box {
+}
+
+.settings-box {
+}
+
+.landing {
+  position: relative;
+  background-image: url("../images/wallpaper-2.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.header {
+  background-color: var(--black-color);
+  background-color: transparent;
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header .logo {
+  color: var(--white-color);
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  font-family: "Satisfy", cursive;
+}
+
+.header .links {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .header .links {
+    display: none;
+  }
+}
+
+.header .links.show-menu {
+  background-color: rgba(255, 255, 255, 70%);
+  padding: 10px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 100%;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.header .links.show-menu li {
+  margin: 10px;
+}
+
+.header .links.show-menu li a {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.header .links li a {
+  color: var(--white-color);
+  margin-right: 15px;
+  transition: var(--main-transition);
+}
+
+.header .links li:last-child a {
+  margin-right: 0;
+}
+
+.header .links li a:hover {
+  color: var(--main-color);
+}
+
+.header .menu-bar {
+  display: none;
+  font-size: 30px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .header .menu-bar {
+    display: block;
+  }
+}
+
+.menu-icon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: 23px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--white-color) transparent;
+  display: none;
+}
+
+.landing .intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.landing .intro-text h1 {
+  color: var(--white-color);
+  font-size: 30px;
+}
+
+.landing .intro-text h1 span {
+  color: var(--main-color);
+  font-size: 50px;
+}
+
+.landing .intro-text p {
+  color: #e6e6e6;
+  line-height: 1.6;
+}
