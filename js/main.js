@@ -24,6 +24,7 @@ let menuBarIcon = document.querySelector(".menu-bar");
 let headerLinks = document.querySelector(".header .links");
 let menuIconContainer = document.querySelector(".menu-icon:before");
 let landingPage = document.querySelector("#landing-page");
+let resetOptionButton = document.querySelector(".reset-option");
 let backgroundInterval;
 let backgroundImgOption = true;
 
@@ -42,6 +43,7 @@ const landingImages = [
 
 menuBarIcon.addEventListener("click", showMenu);
 gearIconContainer.addEventListener("click", openSettings);
+resetOptionButton.addEventListener("click", resetOptions);
 
 if (getColorFromLocalStorage !== null) {
   document.documentElement.style.setProperty(
@@ -192,3 +194,8 @@ function randomizeWallparImg() {
 }
 
 randomizeWallparImg();
+
+function resetOptions() {
+  localStorage.clear();
+  window.location.reload();
+}

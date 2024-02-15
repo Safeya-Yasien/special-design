@@ -20,6 +20,6 @@ get inspiration from <br>
 # not yet
 - before in menuIcon in<br>
 - add meta description to enhance seo<br>
--
+- photoshop mask<br>
 
 Live Server: https://safeya-yasien.github.io/special-design/
