@@ -10,6 +10,9 @@ let getColorFromLocalStorage = localStorage.getItem("color-option");
 let getRandomBackgroundFromLocalStorage = localStorage.getItem(
   "random-background-option"
 );
+let getChoosenBackgroundImgFromLocalStorage = localStorage.getItem(
+  "choosen-background-img"
+);
 let settingsBox = document.querySelector(".settings-box");
 let gearIconContainer = document.querySelector(".gear-icon-container");
 let gearIcon = document.querySelector(".gear-icon");
@@ -56,14 +59,11 @@ if (getColorFromLocalStorage !== null) {
 }
 
 if (getRandomBackgroundFromLocalStorage !== null) {
-  console.log(getRandomBackgroundFromLocalStorage);
   if (getRandomBackgroundFromLocalStorage === "true") {
     backgroundImgOption = true;
   } else {
     backgroundImgOption = false;
   }
-
-  console.log(getRandomBackgroundFromLocalStorage);
 
   document
     .querySelectorAll(".random-background span")
@@ -78,6 +78,29 @@ if (getRandomBackgroundFromLocalStorage !== null) {
       .querySelector(".random-background span.no")
       .classList.add("active");
   }
+}
+
+if (getChoosenBackgroundImgFromLocalStorage !== null) {
+  let chosenBgImgUrl = getChoosenBackgroundImgFromLocalStorage;
+
+  chooseImgList.forEach((img) => {
+    if (img.src === chosenBgImgUrl) {
+      img.classList.add("active");
+      landingPage.style.backgroundImage = `url(${chosenBgImgUrl})`;
+    }
+  });
+
+  backgroundImgOption = false;
+  clearInterval(backgroundInterval);
+
+  let noRandomBackgroundOption = document.querySelector(
+    ".random-background .no"
+  );
+  let yesRandomBackgroundOption = document.querySelector(
+    ".random-background .yes"
+  );
+  noRandomBackgroundOption.classList.add("active");
+  yesRandomBackgroundOption.classList.remove("active");
 }
 
 function showMenu() {
@@ -115,6 +138,8 @@ function chooseImg(img) {
   img.classList.add("active");
 
   landingPage.style.backgroundImage = `url(${img.src})`;
+
+  localStorage.setItem("choosen-background-img", img.src);
 
   backgroundImgOption = false;
   clearInterval(backgroundInterval);
