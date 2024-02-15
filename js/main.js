@@ -7,6 +7,9 @@
 //
 
 let getColorFromLocalStorage = localStorage.getItem("color-option");
+let getRandomBackgroundFromLocalStorage = localStorage.getItem(
+  "random-background-option"
+);
 let settingsBox = document.querySelector(".settings-box");
 let gearIconContainer = document.querySelector(".gear-icon-container");
 let gearIcon = document.querySelector(".gear-icon");
@@ -50,6 +53,31 @@ if (getColorFromLocalStorage !== null) {
       ele.classList.add("active");
     }
   });
+}
+
+if (getRandomBackgroundFromLocalStorage !== null) {
+  console.log(getRandomBackgroundFromLocalStorage);
+  if (getRandomBackgroundFromLocalStorage === "true") {
+    backgroundImgOption = true;
+  } else {
+    backgroundImgOption = false;
+  }
+
+  console.log(getRandomBackgroundFromLocalStorage);
+
+  document
+    .querySelectorAll(".random-background span")
+    .forEach((ele) => ele.classList.remove("active"));
+
+  if (getRandomBackgroundFromLocalStorage === "true") {
+    document
+      .querySelector(".random-background span.yes")
+      .classList.add("active");
+  } else {
+    document
+      .querySelector(".random-background span.no")
+      .classList.add("active");
+  }
 }
 
 function showMenu() {
@@ -110,10 +138,12 @@ randomBackground.forEach((span) => {
     if (dataBackground === "yes") {
       backgroundImgOption = true;
       randomizeWallparImg();
+      localStorage.setItem("random-background-option", true);
       chooseImgList.forEach((img) => img.classList.remove("active"));
     } else {
       backgroundImgOption = false;
       clearInterval(backgroundInterval);
+      localStorage.setItem("random-background-option", false);
     }
   });
 });
