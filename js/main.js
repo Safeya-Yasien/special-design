@@ -6,9 +6,35 @@
 //
 //
 
-// local storage
-
 let getColorFromLocalStorage = localStorage.getItem("color-option");
+let settingsBox = document.querySelector(".settings-box");
+let gearIconContainer = document.querySelector(".gear-icon-container");
+let gearIcon = document.querySelector(".gear-icon");
+let colorsList = document.querySelector(".colors-list");
+let colorsListLi = document.querySelectorAll(".colors-list li");
+let randomBackground = document.querySelectorAll(".random-background span");
+let menuBarIcon = document.querySelector(".menu-bar");
+let headerLinks = document.querySelector(".header .links");
+let menuIconContainer = document.querySelector(".menu-icon:before");
+let landingPage = document.querySelector("#landing-page");
+let backgroundInterval;
+let backgroundImgOption = true;
+
+const landingImages = [
+  "images/wallpaper-1.jpg",
+  "images/wallpaper-2.jpg",
+  "images/wallpaper-3.jpg",
+  "images/wallpaper-4.png",
+  "images/wallpaper-5.jpg",
+  "images/wallpaper-6.jpg",
+  "images/wallpaper-7.jpg",
+  "images/wallpaper-8.jpg",
+  "images/wallpaper-9.jpg",
+  "images/wallpaper-10.jpg",
+];
+
+menuBarIcon.addEventListener("click", showMenu);
+gearIconContainer.addEventListener("click", openSettings);
 
 if (getColorFromLocalStorage !== null) {
   document.documentElement.style.setProperty(
@@ -25,37 +51,9 @@ if (getColorFromLocalStorage !== null) {
   });
 }
 
-// settings box
-let settingsBox = document.querySelector(".settings-box");
-let gearIconContainer = document.querySelector(".gear-icon-container");
-let gearIcon = document.querySelector(".gear-icon");
-let colorsList = document.querySelector(".colors-list");
-let colorsListLi = document.querySelectorAll(".colors-list li");
-let menuBarIcon = document.querySelector(".menu-bar");
-let headerLinks = document.querySelector(".header .links");
-let menuIconContainer = document.querySelector(".menu-icon:before");
-let landingPage = document.querySelector("#landing-page");
-
-menuBarIcon.addEventListener("click", showMenu);
-
 function showMenu() {
   headerLinks.classList.toggle("show-menu");
 }
-
-var landingImages = [
-  "images/wallpaper-1.jpg",
-  "images/wallpaper-2.jpg",
-  "images/wallpaper-3.jpg",
-  "images/wallpaper-4.png",
-  "images/wallpaper-5.jpg",
-  "images/wallpaper-6.jpg",
-  "images/wallpaper-7.jpg",
-  "images/wallpaper-8.jpg",
-  "images/wallpaper-9.jpg",
-  "images/wallpaper-10.jpg",
-];
-
-gearIconContainer.addEventListener("click", openSettings);
 
 function openSettings() {
   settingsBox.classList.toggle("open-settings");
@@ -63,23 +61,49 @@ function openSettings() {
 }
 
 colorsListLi.forEach((li) => {
-  li.addEventListener("click", (li) => {
-    let datasetColor = li.target.dataset.color;
+  li.addEventListener("click", (ele) => {
+    let datasetColor = ele.target.dataset.color;
 
     document.documentElement.style.setProperty("--main-color", datasetColor);
 
     localStorage.setItem("color-option", datasetColor);
 
-    li.target.parentElement.querySelectorAll(".active").forEach((ele) => {
-      ele.classList.remove("active");
-    });
-
-    li.target.classList.add("active");
+    handleActive(ele);
   });
 });
 
-setInterval(() => {
-  let randomNumber = Math.floor(Math.random() * landingImages.length);
+randomBackground.forEach((span) => {
+  span.addEventListener("click", (ele) => {
+    let dataBackground = ele.target.dataset.background;
 
-  landingPage.style.backgroundImage = `url(${landingImages[randomNumber]})`;
-}, 5000);
+    handleActive(ele);
+
+    if (dataBackground === "yes") {
+      backgroundImgOption = true;
+      randomizeWallparImg();
+    } else {
+      backgroundImgOption = false;
+      clearInterval(backgroundInterval);
+    }
+  });
+});
+
+function handleActive(eve) {
+  eve.target.parentElement.querySelectorAll(".active").forEach((ele) => {
+    ele.classList.remove("active");
+  });
+
+  eve.target.classList.add("active");
+}
+
+function randomizeWallparImg() {
+  if (backgroundImgOption) {
+    backgroundInterval = setInterval(() => {
+      let randomNumber = Math.floor(Math.random() * landingImages.length);
+
+      landingPage.style.backgroundImage = `url(${landingImages[randomNumber]})`;
+    }, 5000);
+  }
+}
+
+randomizeWallparImg();

@@ -19,5 +19,7 @@ get inspiration from <br>
 <br>
 # not yet
 - before in menuIcon in<br>
+- add meta description to enhance seo<br>
+-
 
-Live Server:
+Live Server: https://safeya-yasien.github.io/special-design/
