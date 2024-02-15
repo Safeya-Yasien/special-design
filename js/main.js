@@ -20,10 +20,11 @@ let colorsList = document.querySelector(".colors-list");
 let colorsListLi = document.querySelectorAll(".colors-list li");
 let randomBackground = document.querySelectorAll(".random-background span");
 let chooseImgList = document.querySelectorAll(".choose-img img");
+let menuIconContainer = document.querySelector(".menu-icon")
 let menuBarIcon = document.querySelector(".menu-bar");
 let headerLinks = document.querySelector(".header .links");
-let menuIconContainer = document.querySelector(".menu-icon:before");
 let landingPage = document.querySelector("#landing-page");
+let skillsContainer = document.querySelector(".skills");
 let resetOptionButton = document.querySelector(".reset-option");
 let backgroundInterval;
 let backgroundImgOption = true;
@@ -107,6 +108,7 @@ if (getChoosenBackgroundImgFromLocalStorage !== null) {
 
 function showMenu() {
   headerLinks.classList.toggle("show-menu");
+  menuIconContainer.classList.toggle("active");
 }
 
 function openSettings() {
@@ -194,6 +196,33 @@ function randomizeWallparImg() {
 }
 
 randomizeWallparImg();
+
+window.onscroll = function () {
+  let skillsOffsetTop = skillsContainer.offsetTop;
+  let skillsOffsetHeight = skillsContainer.offsetHeight;
+  let windowInnerHeight = window.innerHeight;
+  let windowScrollY = window.pageYOffset;
+
+
+  // let aboutheight = document.querySelector(".about")
+
+  // console.log(aboutheight.offsetHeight)
+
+
+
+  let calculation = skillsOffsetTop + skillsOffsetHeight - windowInnerHeight;
+
+  if (windowScrollY > calculation) {
+    let allSkills = document.querySelectorAll(
+      ".skills .skill-box .skill-progress span"
+    );
+
+    allSkills.forEach((skill) => {
+      skill.style.width = skill.dataset.progress;
+      skill.classList.toggle("active");
+    });
+  }
+};
 
 function resetOptions() {
   localStorage.clear();

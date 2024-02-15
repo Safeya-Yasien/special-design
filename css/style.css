@@ -82,9 +82,6 @@ a {
   padding: 5px;
 }
 
-.settings-box .settings-container {
-}
-
 .settings-box .settings-container .option-box {
   background-color: var(--text-color);
   margin: 10px;
@@ -95,9 +92,6 @@ a {
 .settings-box .option-box h4 {
   margin: 0;
   font-size: 14px;
-}
-
-.settings-box .settings-container .colors-list {
 }
 
 .settings-box .settings-container .colors-list li {
@@ -296,8 +290,12 @@ a {
   right: 23px;
   border-width: 10px;
   border-style: solid;
-  border-color: transparent transparent var(--white-color) transparent;
+  border-color: transparent transparent rgba(255, 255, 255, 70%) transparent;
   display: none;
+}
+
+.menu-icon.active::before {
+  display: block;
 }
 
 .landing .intro-text {
@@ -334,6 +332,13 @@ a {
   align-items: center;
 }
 
+@media (max-width: 767px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 .about-content .info-box {
   flex: 1;
 }
@@ -362,51 +367,118 @@ a {
 .skills {
   padding-top: 50px;
   padding-bottom: 50px;
-  background-color: var(--text-color);
-
+  background-color: #1a1a1a;
 }
-
-.skills .skills-content {
-}
-
-.skills .skill-box {
-  background-color: var(--white-color);
-  padding: 20px;
-  display: flex;    background-color: var(--black-color);
-
-}
-
 
 .skills .skill-box:not(:last-child) {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .skills .skill-box .skill-name {
   font-weight: bold;
-  text-align: center;
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--main-color);
-
+  margin-bottom: 15px;
+  color: var(--text-color);
 }
 
 .skills .skill-box .skill-progress {
   position: relative;
-  background-color: var(--text-color);
+  background-color: #555555;
   width: 100%;
-  height: 30px;
-
+  height: 10px;
+  border-radius: 6px;
 }
 
 .skills .skill-box .skill-progress span {
-  position: absolute;
   height: 100%;
-  background-color: #808080;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  font-weight: bold;
+  display: block;
+  position: relative;
   color: var(--black-color);
+  border-radius: 6px;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.skills .skill-box .skill-progress span.green {
+  background-color: green;
+}
+
+.skills .skill-box .skill-progress span.blue {
+  background-color: #2052a9;
+}
+
+.skills .skill-box .skill-progress span.orange {
+  background-color: chocolate;
+}
+
+.skills .skill-box .skill-progress span.red {
+  background-color: #e91e63;
+}
+
+.skills .skill-box .skill-progress span.yellow {
+  background-color: #ffaa00;
+}
+
+.skills .skill-box .skill-progress span::before {
+  content: attr(data-progress);
+  position: absolute;
+  right: -19px;
+  top: -40px;
+  color: var(--black-color);
+  padding: 4px 5px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--text-color);
+  display: none;
+}
+
+.skills .skill-box .skill-progress span::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: -14px;
+  border: 8px solid;
+  border-color: var(--text-color) transparent transparent transparent;
+  display: none;
+}
+
+.skills .skill-box .skill-progress span.active::before,
+.skills .skill-box .skill-progress span.active::after {
+  display: block;
+}
+
+.gallery {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  background-color: var(--white-color);
+}
+
+.gallery .gallery-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.gallery img {
+  max-width: 100%;
+  padding: 5px;
+  border: 1px solid var(--black-color);
+  background-color: var(--text-color);
+  cursor: pointer;
+}
+
+.gallery {
+}
+
+.gallery {
+}
+
+.gallery {
+}
+
+.gallery {
+}
+
+.gallery {
 }
