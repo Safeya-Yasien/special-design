@@ -151,6 +151,22 @@ a {
   opacity: 0.5;
 }
 
+.settings-box .choose-img {
+  display: flex;
+  margin-top: 20px;
+}
+
+.settings-box .choose-img img {
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.settings-box .choose-img img.active{
+  opacity: 1;
+}
+
 .settings-box .reset-option {
   border: none;
   background-color: var(--main-color);

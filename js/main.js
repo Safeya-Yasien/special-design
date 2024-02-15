@@ -13,6 +13,7 @@ let gearIcon = document.querySelector(".gear-icon");
 let colorsList = document.querySelector(".colors-list");
 let colorsListLi = document.querySelectorAll(".colors-list li");
 let randomBackground = document.querySelectorAll(".random-background span");
+let chooseImgList = document.querySelectorAll(".choose-img img");
 let menuBarIcon = document.querySelector(".menu-bar");
 let headerLinks = document.querySelector(".header .links");
 let menuIconContainer = document.querySelector(".menu-icon:before");
@@ -72,6 +73,34 @@ colorsListLi.forEach((li) => {
   });
 });
 
+chooseImgList.forEach((img) => {
+  img.addEventListener("click", () => chooseImg(img));
+});
+
+function chooseImg(img) {
+  let container = img.parentElement.parentElement;
+
+  container
+    .querySelectorAll("img")
+    .forEach((ele) => ele.classList.remove("active"));
+
+  img.classList.add("active");
+
+  landingPage.style.backgroundImage = `url(${img.src})`;
+
+  backgroundImgOption = false;
+  clearInterval(backgroundInterval);
+
+  let noRandomBackgroundOption = document.querySelector(
+    ".random-background .no"
+  );
+  let yesRandomBackgroundOption = document.querySelector(
+    ".random-background .yes"
+  );
+  noRandomBackgroundOption.classList.add("active");
+  yesRandomBackgroundOption.classList.remove("active");
+}
+
 randomBackground.forEach((span) => {
   span.addEventListener("click", (ele) => {
     let dataBackground = ele.target.dataset.background;
@@ -81,6 +110,7 @@ randomBackground.forEach((span) => {
     if (dataBackground === "yes") {
       backgroundImgOption = true;
       randomizeWallparImg();
+      chooseImgList.forEach((img) => img.classList.remove("active"));
     } else {
       backgroundImgOption = false;
       clearInterval(backgroundInterval);
@@ -102,7 +132,7 @@ function randomizeWallparImg() {
       let randomNumber = Math.floor(Math.random() * landingImages.length);
 
       landingPage.style.backgroundImage = `url(${landingImages[randomNumber]})`;
-    }, 5000);
+    }, 2000);
   }
 }
 
