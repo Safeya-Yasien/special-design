@@ -23,6 +23,9 @@ get inspiration from <br>
 
 <hr>
 
-
+<br>
+# Question:
+- it's better use float or grid in timeline
+<br>
 
 Live Server: https://safeya-yasien.github.io/special-design/
