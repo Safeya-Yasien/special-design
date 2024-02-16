@@ -20,7 +20,7 @@ let colorsList = document.querySelector(".colors-list");
 let colorsListLi = document.querySelectorAll(".colors-list li");
 let randomBackground = document.querySelectorAll(".random-background span");
 let chooseImgList = document.querySelectorAll(".choose-img img");
-let menuIconContainer = document.querySelector(".menu-icon")
+let menuIconContainer = document.querySelector(".menu-icon");
 let menuBarIcon = document.querySelector(".menu-bar");
 let headerLinks = document.querySelector(".header .links");
 let landingPage = document.querySelector("#landing-page");
@@ -177,6 +177,11 @@ randomBackground.forEach((span) => {
   });
 });
 
+function resetOptions() {
+  localStorage.clear();
+  window.location.reload();
+}
+
 function handleActive(eve) {
   eve.target.parentElement.querySelectorAll(".active").forEach((ele) => {
     ele.classList.remove("active");
@@ -203,13 +208,6 @@ window.onscroll = function () {
   let windowInnerHeight = window.innerHeight;
   let windowScrollY = window.pageYOffset;
 
-
-  // let aboutheight = document.querySelector(".about")
-
-  // console.log(aboutheight.offsetHeight)
-
-
-
   let calculation = skillsOffsetTop + skillsOffsetHeight - windowInnerHeight;
 
   if (windowScrollY > calculation) {
@@ -224,7 +222,45 @@ window.onscroll = function () {
   }
 };
 
-function resetOptions() {
-  localStorage.clear();
-  window.location.reload();
+let galleryImgs = document.querySelectorAll(".gallery img");
+
+galleryImgs.forEach((img) => {
+  img.addEventListener("click", (e) => {
+    let popupOverlay = document.createElement("div");
+    popupOverlay.className = "popup-overlay";
+
+    let popupBox = document.createElement("div");
+    popupBox.className = "popup-box";
+
+    if (img.alt !== null) {
+      let imgHeading = document.createElement("h2");
+      imgHeading.className = "img-heading";
+
+      imgHeading.innerHTML = img.alt;
+
+      popupBox.appendChild(imgHeading);
+    }
+
+    let popupImg = document.createElement("img");
+    popupImg.className = "popup-img";
+    popupImg.src = img.src;
+
+    popupBox.appendChild(popupImg);
+
+    let closeButton = document.createElement("div");
+    closeButton.className = "close-button";
+    closeButton.innerHTML = "X";
+    closeButton.addEventListener("click", closeWindow);
+
+    popupBox.appendChild(closeButton);
+
+    popupOverlay.appendChild(popupBox);
+
+    document.body.appendChild(popupOverlay);
+  });
+});
+
+function closeWindow() {
+  let popupOverlay = document.querySelector(".popup-overlay");
+  popupOverlay.remove();
 }

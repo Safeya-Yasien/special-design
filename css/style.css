@@ -468,13 +468,52 @@ a {
   cursor: pointer;
 }
 
-.gallery {
+.popup-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
 }
 
-.gallery {
+.popup-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+  padding: 20px;
+  background-color: var(--text-color);
+  border: 1px solid var(--white-color);
 }
 
-.gallery {
+.close-button{
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--black-color);
+  font-weight: bold;
+  color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.img-heading{
+  text-align: center;
+  font-weight: bold;
+  color: var(--main-color);
+  margin-bottom: 20px;
+}
+
+.popup-img {
+  max-width: 100%;
 }
 
 .gallery {
