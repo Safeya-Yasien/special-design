@@ -26,6 +26,8 @@ get inspiration from <br>
 <br>
 # Question:
 - it's better use float or grid in timeline
+- centerized contact section
+- 
 <br>
 
 Live Server: https://safeya-yasien.github.io/special-design/
