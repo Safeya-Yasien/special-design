@@ -107,7 +107,8 @@ a {
 }
 
 .settings-box .settings-container .colors-list li.active,
-.settings-box .random-background span.active {
+.settings-box .random-background span.active,
+.settings-box .bullets-option span.active {
   opacity: 1;
 }
 
@@ -134,11 +135,12 @@ a {
   margin-top: 15px;
 }
 
-.settings-box .option-box .random-background {
+.settings-box .option-box .random-background,
+.settings-box .option-box .bullets-option {
   margin-top: 15px;
 }
 
-.settings-box .random-background span {
+.settings-box .option-box span {
   background-color: var(--main-color);
   padding: 4px 8px;
   border-radius: 6px;
@@ -177,19 +179,50 @@ a {
   cursor: pointer;
 }
 
-.settings-box .settings-container {
+.nav-bullets {
+  position: fixed;
+  z-index: 2000;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
 }
 
-.settings-box {
+.nav-bullets .bullet {
+  border: 3px solid var(--main-color);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 20px auto;
+  cursor: pointer;
+  position: relative;
 }
 
-.settings-box {
+.nav-bullets .bullet .tooltip {
+  position: absolute;
+  right: 40px;
+  top: -5px;
+  padding: 4px 8px;
+  background-color: rgb(255 255 255 / 64%);
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  cursor: default;
+  display: none;
+  pointer-events: none;
 }
 
-.settings-box {
+.nav-bullets .bullet:hover .tooltip {
+  display: block;
 }
 
-.settings-box {
+.nav-bullets .bullet .tooltip::before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  border: 12px solid;
+  border-color: transparent transparent transparent var(--text-color);
+  right: -25px;
 }
 
 .landing {
@@ -726,9 +759,6 @@ a {
   text-align: center;
 }
 
-.features .feature-box {
-}
-
 .features .feature-box h4 {
   margin-top: 20px;
   margin-bottom: 40px;
@@ -918,12 +948,9 @@ a {
   cursor: pointer;
 }
 
-
-footer{
+footer {
   padding: 15px;
   text-align: center;
   background-color: var(--black-color);
   color: var(--text-color);
-
 }
-

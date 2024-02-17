@@ -1,11 +1,3 @@
-//
-//
-//
-//
-//
-//
-//
-
 let getColorFromLocalStorage = localStorage.getItem("color-option");
 let getRandomBackgroundFromLocalStorage = localStorage.getItem(
   "random-background-option"
@@ -13,6 +5,7 @@ let getRandomBackgroundFromLocalStorage = localStorage.getItem(
 let getChoosenBackgroundImgFromLocalStorage = localStorage.getItem(
   "choosen-background-img"
 );
+let getBulletOptionFromLocalStorage = localStorage.getItem("bullets-option");
 let settingsBox = document.querySelector(".settings-box");
 let gearIconContainer = document.querySelector(".gear-icon-container");
 let gearIcon = document.querySelector(".gear-icon");
@@ -26,6 +19,9 @@ let headerLinks = document.querySelector(".header .links");
 let landingPage = document.querySelector("#landing-page");
 let skillsContainer = document.querySelector(".skills");
 let resetOptionButton = document.querySelector(".reset-option");
+let navBullets = document.querySelector(".nav-bullets");
+let bulletsOption = document.querySelectorAll(".bullets-option span");
+let allBullets = document.querySelectorAll(".nav-bullets .bullet");
 let backgroundInterval;
 let backgroundImgOption = true;
 
@@ -64,23 +60,19 @@ if (getColorFromLocalStorage !== null) {
 if (getRandomBackgroundFromLocalStorage !== null) {
   if (getRandomBackgroundFromLocalStorage === "true") {
     backgroundImgOption = true;
+    document
+      .querySelector(".random-background span.yes")
+      .classList.add("active");
   } else {
     backgroundImgOption = false;
+    document
+      .querySelector(".random-background span.no")
+      .classList.add("active");
   }
 
   document
     .querySelectorAll(".random-background span")
     .forEach((ele) => ele.classList.remove("active"));
-
-  if (getRandomBackgroundFromLocalStorage === "true") {
-    document
-      .querySelector(".random-background span.yes")
-      .classList.add("active");
-  } else {
-    document
-      .querySelector(".random-background span.no")
-      .classList.add("active");
-  }
 }
 
 if (getChoosenBackgroundImgFromLocalStorage !== null) {
@@ -104,6 +96,21 @@ if (getChoosenBackgroundImgFromLocalStorage !== null) {
   );
   noRandomBackgroundOption.classList.add("active");
   yesRandomBackgroundOption.classList.remove("active");
+}
+
+if (getBulletOptionFromLocalStorage !== null) {
+  bulletsOption.forEach((span) => {
+    span.classList.remove("active");
+  });
+
+  if (getBulletOptionFromLocalStorage === "block") {
+    navBullets.style.display = "block";
+
+    document.querySelector(".bullets-option .yes").classList.add("active");
+  } else {
+    navBullets.style.display = "none";
+    document.querySelector(".bullets-option .no").classList.add("active");
+  }
 }
 
 function showMenu() {
@@ -174,6 +181,22 @@ randomBackground.forEach((span) => {
       clearInterval(backgroundInterval);
       localStorage.setItem("random-background-option", false);
     }
+  });
+});
+
+bulletsOption.forEach((span) => {
+  span.addEventListener("click", (ele) => {
+    if (ele.target.dataset.display === "show") {
+      navBullets.style.display = "block";
+
+      localStorage.setItem("bullets-option", "block");
+    } else {
+      navBullets.style.display = "none";
+
+      localStorage.setItem("bullets-option", "none");
+    }
+
+    handleActive(ele);
   });
 });
 
@@ -264,3 +287,11 @@ function closeWindow() {
   let popupOverlay = document.querySelector(".popup-overlay");
   popupOverlay.remove();
 }
+
+allBullets.forEach((bullet) => {
+  bullet.addEventListener("click", (ele) => {
+    document.querySelector("." + ele.target.dataset.section).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});

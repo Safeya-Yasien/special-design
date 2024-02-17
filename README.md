@@ -1,13 +1,5 @@
 # Special Design
 
-get inspiration from <br>
-
-- https://elitepencil.com/<br>
-- https://iqbal.design/<br>
-- https://www.loliware.com/<br>
-- <br>
-- <br>
-
 <hr>
 # What I have learned in this site<br>
 
@@ -17,7 +9,7 @@ get inspiration from <br>
 - offsetHeight: returns the height of height<br>
 - innerHeight: current window height<br>
 - pageYOffset: returns scrolled px from start upper left to current point<br>
-- <br>
+- scrollIntoView<br>
 - <br>
 - <br>
 
